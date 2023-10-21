@@ -1,23 +1,23 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { hot } from 'react-hot-loader/root'
+import Champions from 'views/champions'
+import DetailsChampion from 'views/detailsChampion'
+import { Provider } from 'react-redux'
+import store from 'store'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Champions />} />
+          <Route path=":idChampion" element={<DetailsChampion />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   )
 }
 
-export default App
+export default hot(App)
